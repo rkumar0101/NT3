@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # Your Next.js app lives in ./web
+    # Our app lives in ./web
     defaults:
       run:
         working-directory: web
@@ -19,17 +19,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js (with Corepack)
+      # ✅ Install pnpm FIRST so setup-node caching won't crash
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
+
+      # Then setup Node and enable pnpm cache
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: pnpm
 
-      # 👇 This is the key: enable pnpm via Corepack (no global npm install)
-      - name: Enable pnpm via Corepack
+      - name: Show versions
         run: |
-          corepack enable
-          corepack prepare pnpm@9 --activate
+          node -v
           pnpm -v
 
       - name: Install dependencies
