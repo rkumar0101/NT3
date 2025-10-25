@@ -5,30 +5,37 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    # our app lives in ./web, so run all steps there
     defaults:
       run:
         working-directory: web
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      # Install Node first
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
+          node-version: 20
+          cache: "pnpm"
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: true
+      # Install pnpm globally (so commands are available)
+      - name: Install pnpm
+        run: npm install -g pnpm@9
+
+      # Confirm pnpm is available
+      - name: Check pnpm version
+        run: pnpm --version
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
         run: pnpm lint || echo "Lint warnings ignored"
