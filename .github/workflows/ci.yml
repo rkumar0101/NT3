@@ -10,6 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    # all commands run in the Next.js app folder
     defaults:
       run:
         working-directory: web
@@ -18,22 +19,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Install Node first
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "pnpm"
+          cache: pnpm
 
-      # Install pnpm globally (so commands are available)
+      # 👉 install pnpm BEFORE using it
       - name: Install pnpm
         run: npm install -g pnpm@9
 
-      # Confirm pnpm is available
-      - name: Check pnpm version
-        run: pnpm --version
+      - name: Show versions
+        run: |
+          node -v
+          pnpm -v
 
-      # Install dependencies
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
