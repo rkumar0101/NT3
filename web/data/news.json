@@ -1,0 +1,26 @@
+[
+  {
+    "id": "nt-1",
+    "title": "OpenAI ships GPT-5 Thinking",
+    "summary": "Reasoning-first model rolls out with stronger tool support.",
+    "image": "/placeholder.svg",
+    "url": "https://example.com/openai-gpt5-thinking",
+    "publishedAt": "2025-10-25T09:00:00Z"
+  },
+  {
+    "id": "nt-2",
+    "title": "Next.js 16 goes stable with Turbopack",
+    "summary": "Faster HMR and improved dev stability in the new release.",
+    "image": "/placeholder.svg",
+    "url": "https://example.com/next-16",
+    "publishedAt": "2025-10-20T12:00:00Z"
+  },
+  {
+    "id": "nt-3",
+    "title": "TypeScript 6 improves ergonomics",
+    "summary": "Cleaner type inference and compiler speed-ups.",
+    "image": "/placeholder.svg",
+    "url": "https://example.com/typescript-6",
+    "publishedAt": "2025-10-10T08:30:00Z"
+  }
+]
